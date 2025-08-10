@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Education</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            text-align: center;
+            padding: 2rem 0 1rem 0;
+            font-size: 2rem;
+            color: #fff;
+            background: linear-gradient(90deg, #19c37d 0%, #13a06b 100%);
+            animation: fadeIn 2s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .edu-timeline {
+            max-width: 650px;
+            margin: 2rem auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            padding: 2rem;
+        }
+        .edu-item {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        .edu-item:last-child {
+            border-bottom: none;
+        }
+        .edu-title {
+            font-weight: bold;
+            color: #19c37d;
+            font-size: 1.2rem;
+        }
+        .edu-period {
+            color: #555;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        .edu-desc {
+            color: #343541;
+        }
+        .subject-marks {
+            margin: 0.5rem 0 0.5rem 0;
+            color: #555;
+            font-size: 0.98rem;
+        }
+        .add-edu-form {
+            margin-top: 2rem;
+            background: #fafafa;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        .add-edu-form input, .add-edu-form textarea {
+            width: 100%;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+        .add-edu-form button {
+            background: #19c37d;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .add-edu-form button:hover {
+            background: #13a06b;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">My Education</div>
+    <div class="edu-timeline" id="edu-timeline">
+        <div class="edu-item">
+            <div class="edu-title">Class X (CBSE) - 85.5%</div>
+            <div class="edu-period">Bholananda National Vidyalaya, 2020</div>
+            <div class="subject-marks">
+                <strong>Subject-wise:</strong>
+                English-83, Hindi-88, SST-96, IT-90, Science-88, Math-68
+            </div>
+            <div class="edu-desc">
+                Schooling from Bholananda National Vidyalaya (CBSE Board).
+            </div>
+        </div>
+        <div class="edu-item">
+            <div class="edu-title">Class XII (Science PCM + Computer Science) - 75.8%</div>
+            <div class="edu-period">Bholananda National Vidyalaya, 2022</div>
+            <div class="subject-marks">
+                <strong>Subject-wise:</strong>
+                English-86, Geography-86, Computer Science-79, Math-75, Physics-73, Chemistry-59
+            </div>
+            <div class="edu-desc">
+                Science stream (PCM with Computer Science) from Bholananda National Vidyalaya (CBSE Board).
+            </div>
+        </div>
+        <div class="edu-item">
+            <div class="edu-title">B.Tech CSE (AI & ML) - Pursuing</div>
+            <div class="edu-period">Sister Nivedita University, Kolkata</div>
+            <div class="edu-desc">
+                Currently pursuing B.Tech in Computer Science (AI & ML) at Sister Nivedita University, near Biswa Bangla Gate and Ohio Hospital.<br>
+                Learning web development as an alternative skill.
+            </div>
+        </div>
+    </div>
+    <div class="edu-timeline add-edu-form">
+        <h2>Add Your Education</h2>
+        <input type="text" id="degree" placeholder="Degree/Exam (e.g. B.Sc, Class X)" />
+        <input type="text" id="institute" placeholder="Institute/School/College" />
+        <input type="text" id="year" placeholder="Year (e.g. 2023)" />
+        <input type="text" id="marks" placeholder="Marks/Percentage/CGPA" />
+        <textarea id="subjects" rows="2" placeholder="Subject-wise marks (optional)"></textarea>
+        <textarea id="desc" rows="2" placeholder="Description"></textarea>
+        <button onclick="addEducation()">Add Education</button>
+    </div>
+    <script>
+        function addEducation() {
+            const degree = document.getElementById('degree').value.trim();
+            const institute = document.getElementById('institute').value.trim();
+            const year = document.getElementById('year').value.trim();
+            const marks = document.getElementById('marks').value.trim();
+            const subjects = document.getElementById('subjects').value.trim();
+            const desc = document.getElementById('desc').value.trim();
+            if (degree && institute && year && marks && desc) {
+                const timeline = document.getElementById('edu-timeline');
+                const eduDiv = document.createElement('div');
+                eduDiv.className = 'edu-item';
+                eduDiv.innerHTML = `
+                    <div class="edu-title">${degree} - ${marks}</div>
+                    <div class="edu-period">${institute}, ${year}</div>
+                    ${subjects ? `<div class="subject-marks"><strong>Subject-wise:</strong> ${subjects}</div>` : ""}
+                    <div class="edu-desc">${desc}</div>
+                `;
+                timeline.appendChild(eduDiv);
+                document.getElementById('degree').value = '';
+                document.getElementById('institute').value = '';
+                document.getElementById('year').value = '';
+                document.getElementById('marks').value = '';
+                document.getElementById('subjects').value = '';
+                document.getElementById('desc').value = '';
+            } else {
+                alert('Please fill all required fields.');
+            }
+        }
+    </script>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experience</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            text-align: center;
+            padding: 2rem 0 1rem 0;
+            font-size: 2rem;
+            color: #fff;
+            background: linear-gradient(90deg, #19c37d 0%, #13a06b 100%);
+            animation: fadeIn 2s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .timeline {
+            max-width: 600px;
+            margin: 2rem auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            padding: 2rem;
+        }
+        .exp-item {
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        .exp-item:last-child {
+            border-bottom: none;
+        }
+        .exp-title {
+            font-weight: bold;
+            color: #19c37d;
+            font-size: 1.2rem;
+        }
+        .exp-period {
+            color: #555;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        .exp-desc {
+            color: #343541;
+        }
+        .add-exp-form {
+            margin-top: 2rem;
+            background: #fafafa;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+        .add-exp-form input, .add-exp-form textarea {
+            width: 100%;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+        }
+        .add-exp-form button {
+            background: #19c37d;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .add-exp-form button:hover {
+            background: #13a06b;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">My Experience</div>
+    <div class="timeline" id="timeline">
+        <div class="exp-item">
+            <div class="exp-title">B.Tech CSE (AIML Specialization) Student</div>
+            <div class="exp-period">Sister Nivedita University</div>
+            <div class="exp-desc">
+                Currently pursuing B.Tech in Computer Science and Engineering with specialization in Artificial Intelligence & Machine Learning.<br>
+                Learning HTML, CSS, and JavaScript for web development.<br>
+                Slight knowledge of Python (studied in Class XII).<br>
+                Familiar with SQL and databases.<br>
+                Completed a computer course covering HTML, C language, Scratch, and BlueJ.
+            </div>
+        </div>
+        <div class="exp-item">
+            <div class="exp-title">Web Development Skills</div>
+            <div class="exp-period">2024 - Present</div>
+            <div class="exp-desc">
+                Building web projects using HTML, CSS, and JavaScript.<br>
+                Interested in frontend development and UI/UX design.
+            </div>
+        </div>
+        <div class="exp-item">
+            <div class="exp-title">Programming & Tools</div>
+            <div class="exp-period">2022 - Present</div>
+            <div class="exp-desc">
+                Python, C language, SQL, Scratch, BlueJ.<br>
+                Basics of database management and application development.
+            </div>
+        </div>
+    </div>
+    <div class="timeline add-exp-form">
+        <h2>Add Your Experience</h2>
+        <input type="text" id="role" placeholder="Role/Position" />
+        <input type="text" id="period" placeholder="Period (e.g. Jan 2021 - Dec 2021)" />
+        <textarea id="desc" rows="3" placeholder="Description"></textarea>
+        <button onclick="addExperience()">Add Experience</button>
+    </div>
+    <script>
+        function addExperience() {
+            const role = document.getElementById('role').value.trim();
+            const period = document.getElementById('period').value.trim();
+            const desc = document.getElementById('desc').value.trim();
+            if (role && period && desc) {
+                const timeline = document.getElementById('timeline');
+                const expDiv = document.createElement('div');
+                expDiv.className = 'exp-item';
+                expDiv.innerHTML = `
+                    <div class="exp-title">${role}</div>
+                    <div class="exp-period">${period}</div>
+                    <div class="exp-desc">${desc}</div>
+                `;
+                timeline.appendChild(expDiv);
+                document.getElementById('role').value = '';
+                document.getElementById('period').value = '';
+                document.getElementById('desc').value = '';
+            } else {
+                alert('Please fill all fields.');
+            }
